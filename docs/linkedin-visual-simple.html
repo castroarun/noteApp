@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteApp Development Time</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            background: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .header h1 {
+            font-size: 24px;
+            color: #1f2937;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .header p {
+            color: #6b7280;
+            font-size: 14px;
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .chart {
+            margin-bottom: 32px;
+        }
+        .chart-title {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        .bar-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .bar-label {
+            width: 140px;
+            color: #374151;
+            text-align: right;
+            padding-right: 16px;
+        }
+        .bar-hours {
+            width: 50px;
+            color: #6b7280;
+            text-align: right;
+            padding-right: 16px;
+        }
+        .bar-visual {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+        .bar {
+            height: 20px;
+            background: #1f2937;
+            display: flex;
+            align-items: center;
+        }
+        .bar-building { width: 300px; }
+        .bar-debugging { width: 120px; }
+        .bar-design { width: 80px; }
+        .bar-docs { width: 60px; }
+        .bar-testing { width: 60px; }
+
+        .footer {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid #e5e7eb;
+        }
+        .tech-line {
+            color: #6b7280;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+        .credit {
+            color: #9ca3af;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>NoteApp</h1>
+            <p>My first AI-era side project</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value">31</div>
+                <div class="stat-label">Hours</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">12</div>
+                <div class="stat-label">Commits</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">6</div>
+                <div class="stat-label">Templates</div>
+            </div>
+        </div>
+
+        <div class="chart">
+            <div class="chart-title">Time Distribution</div>
+            <div class="bar-row">
+                <div class="bar-label">Building</div>
+                <div class="bar-hours">15h</div>
+                <div class="bar-visual">
+                    <div class="bar bar-building"></div>
+                </div>
+            </div>
+            <div class="bar-row">
+                <div class="bar-label">Debugging</div>
+                <div class="bar-hours">6h</div>
+                <div class="bar-visual">
+                    <div class="bar bar-debugging"></div>
+                </div>
+            </div>
+            <div class="bar-row">
+                <div class="bar-label">Design & Planning</div>
+                <div class="bar-hours">4h</div>
+                <div class="bar-visual">
+                    <div class="bar bar-design"></div>
+                </div>
+            </div>
+            <div class="bar-row">
+                <div class="bar-label">Documentation</div>
+                <div class="bar-hours">3h</div>
+                <div class="bar-visual">
+                    <div class="bar bar-docs"></div>
+                </div>
+            </div>
+            <div class="bar-row">
+                <div class="bar-label">Testing</div>
+                <div class="bar-hours">3h</div>
+                <div class="bar-visual">
+                    <div class="bar bar-testing"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="tech-line">Next.js · TypeScript · TipTap · Supabase · Tailwind</div>
+            <div class="credit">Built with Claude Code</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteApp Development Time</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+        .container {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            max-width: 800px;
+            width: 100%;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 28px;
+            color: #1f2937;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .header p {
+            color: #6b7280;
+            font-size: 16px;
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #3b82f6;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .chart-container {
+            position: relative;
+            height: 350px;
+            margin-bottom: 30px;
+        }
+        .legend-custom {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+        .legend-text {
+            font-size: 14px;
+            color: #374151;
+        }
+        .legend-hours {
+            font-weight: 600;
+            color: #1f2937;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+        .footer p {
+            color: #9ca3af;
+            font-size: 12px;
+        }
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+        .tech-badge {
+            background: #f3f4f6;
+            color: #374151;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>NoteApp Development Time</h1>
+            <p>Building my first AI-era side project</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value">31</div>
+                <div class="stat-label">Total Hours</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">12</div>
+                <div class="stat-label">Commits</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">6</div>
+                <div class="stat-label">Templates</div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="timeChart"></canvas>
+        </div>
+
+        <div class="legend-custom">
+            <div class="legend-item">
+                <div class="legend-color" style="background: #F59E0B;"></div>
+                <span class="legend-text">Building</span>
+                <span class="legend-hours">15h (48%)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #EF4444;"></div>
+                <span class="legend-text">Debugging</span>
+                <span class="legend-hours">6h (19%)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #3B82F6;"></div>
+                <span class="legend-text">Design</span>
+                <span class="legend-hours">4h (13%)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #10B981;"></div>
+                <span class="legend-text">Documentation</span>
+                <span class="legend-hours">3h (10%)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #8B5CF6;"></div>
+                <span class="legend-text">Testing</span>
+                <span class="legend-hours">3h (10%)</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Built with Claude Code as my AI pair programmer</p>
+            <div class="tech-stack">
+                <span class="tech-badge">Next.js 16</span>
+                <span class="tech-badge">TypeScript</span>
+                <span class="tech-badge">TipTap</span>
+                <span class="tech-badge">Supabase</span>
+                <span class="tech-badge">Tailwind CSS</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('timeChart').getContext('2d');
+
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Building', 'Debugging', 'Design & Planning', 'Documentation', 'Testing'],
+                datasets: [{
+                    data: [15, 6, 4, 3, 3],
+                    backgroundColor: [
+                        '#F59E0B',
+                        '#EF4444',
+                        '#3B82F6',
+                        '#10B981',
+                        '#8B5CF6'
+                    ],
+                    borderWidth: 3,
+                    borderColor: '#ffffff',
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '55%',
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: '#1f2937',
+                        titleFont: { size: 14, weight: '600' },
+                        bodyFont: { size: 13 },
+                        padding: 12,
+                        cornerRadius: 8,
+                        callbacks: {
+                            label: function(context) {
+                                return ` ${context.raw} hours (${Math.round(context.raw / 31 * 100)}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

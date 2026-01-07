@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteApp - LinkedIn Visual</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* Left side - App Screenshot */
+        .app-preview {
+            background: #1e293b;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .browser-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: #334155;
+            border-radius: 12px 12px 0 0;
+            margin: -20px -20px 16px -20px;
+        }
+        .browser-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #fbbf24; }
+        .dot-green { background: #22c55e; }
+        .browser-url {
+            flex: 1;
+            background: #1e293b;
+            border-radius: 6px;
+            padding: 8px 16px;
+            margin-left: 12px;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+        .screenshot-placeholder {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 12px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #64748b;
+            border: 2px dashed #334155;
+            position: relative;
+            overflow: hidden;
+        }
+        .screenshot-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.03) 50%, transparent 100%),
+                linear-gradient(0deg, transparent 0%, rgba(139, 92, 246, 0.03) 50%, transparent 100%);
+        }
+        .screenshot-placeholder svg {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+        .screenshot-placeholder p {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        .screenshot-placeholder small {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        /* Mockup of NoteApp UI */
+        .app-mockup {
+            background: #0f172a;
+            border-radius: 12px;
+            height: 400px;
+            display: grid;
+            grid-template-columns: 200px 1fr 180px;
+            overflow: hidden;
+        }
+        .mock-sidebar {
+            background: #1e293b;
+            padding: 16px;
+            border-right: 1px solid #334155;
+        }
+        .mock-logo {
+            font-size: 18px;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .mock-logo-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 6px;
+        }
+        .mock-search {
+            background: #334155;
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 16px;
+        }
+        .mock-note {
+            background: #334155;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 8px;
+        }
+        .mock-note-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-bottom: 4px;
+        }
+        .mock-note-preview {
+            font-size: 11px;
+            color: #64748b;
+        }
+        .mock-note.active {
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+        }
+        .mock-editor {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+        .mock-toolbar {
+            display: flex;
+            gap: 4px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #334155;
+            margin-bottom: 16px;
+        }
+        .mock-toolbar-btn {
+            width: 32px;
+            height: 32px;
+            background: #334155;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .mock-editor-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 16px;
+        }
+        .mock-editor-content {
+            flex: 1;
+            font-size: 14px;
+            color: #cbd5e1;
+            line-height: 1.8;
+        }
+        .mock-editor-content .bullet {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .mock-editor-content .bullet::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #3b82f6;
+            border-radius: 50%;
+            margin-top: 7px;
+            flex-shrink: 0;
+        }
+        .mock-templates {
+            background: #1e293b;
+            padding: 16px;
+            border-left: 1px solid #334155;
+        }
+        .mock-templates-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        .mock-template {
+            background: #334155;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            font-size: 12px;
+            color: #e2e8f0;
+        }
+
+        /* Right side - Stats */
+        .stats-panel {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+        }
+        .stats-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .stats-header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+        .stats-header p {
+            color: #64748b;
+            font-size: 14px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .stat-card {
+            text-align: center;
+            padding: 16px;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+        .stat-value {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-label {
+            font-size: 11px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+        .chart {
+            margin-bottom: 24px;
+        }
+        .bar-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .bar-label {
+            width: 90px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #475569;
+            text-align: right;
+            padding-right: 12px;
+        }
+        .bar-container {
+            flex: 1;
+            height: 28px;
+            background: #f1f5f9;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .bar {
+            height: 100%;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+        }
+        .bar-value {
+            font-size: 11px;
+            font-weight: 700;
+            color: white;
+        }
+        .bar-building { background: linear-gradient(90deg, #f59e0b, #fbbf24); width: 100%; }
+        .bar-debugging { background: linear-gradient(90deg, #ef4444, #f87171); width: 40%; }
+        .bar-design { background: linear-gradient(90deg, #3b82f6, #60a5fa); width: 26.7%; }
+        .bar-docs { background: linear-gradient(90deg, #10b981, #34d399); width: 20%; }
+        .bar-testing { background: linear-gradient(90deg, #8b5cf6, #a78bfa); width: 20%; }
+
+        .insight-box {
+            background: #fffbeb;
+            border-radius: 10px;
+            padding: 16px;
+            border-left: 3px solid #f59e0b;
+            margin-bottom: 24px;
+        }
+        .insight-box p {
+            color: #92400e;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        .tech-badge {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid #e2e8f0;
+        }
+        .footer p {
+            color: #94a3b8;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left: App Screenshot/Mockup -->
+        <div class="app-preview">
+            <div class="browser-bar">
+                <div class="browser-dot dot-red"></div>
+                <div class="browser-dot dot-yellow"></div>
+                <div class="browser-dot dot-green"></div>
+                <div class="browser-url">localhost:3000</div>
+            </div>
+
+            <!-- Mockup UI -->
+            <div class="app-mockup">
+                <div class="mock-sidebar">
+                    <div class="mock-logo">
+                        <div class="mock-logo-icon"></div>
+                        NoteApp
+                    </div>
+                    <div class="mock-search">Search notes...</div>
+                    <div class="mock-note active">
+                        <div class="mock-note-title">Weekend Planner</div>
+                        <div class="mock-note-preview">Saturday morning...</div>
+                    </div>
+                    <div class="mock-note">
+                        <div class="mock-note-title">Project Ideas</div>
+                        <div class="mock-note-preview">AI agent for...</div>
+                    </div>
+                    <div class="mock-note">
+                        <div class="mock-note-title">Meeting Notes</div>
+                        <div class="mock-note-preview">Action items...</div>
+                    </div>
+                </div>
+                <div class="mock-editor">
+                    <div class="mock-toolbar">
+                        <div class="mock-toolbar-btn">B</div>
+                        <div class="mock-toolbar-btn">I</div>
+                        <div class="mock-toolbar-btn">U</div>
+                        <div class="mock-toolbar-btn">H1</div>
+                        <div class="mock-toolbar-btn">H2</div>
+                    </div>
+                    <div class="mock-editor-title">Weekend Planner</div>
+                    <div class="mock-editor-content">
+                        <div class="bullet">Morning yoga session</div>
+                        <div class="bullet">Grocery shopping</div>
+                        <div class="bullet">Work on side project</div>
+                        <div class="bullet">Dinner with friends</div>
+                    </div>
+                </div>
+                <div class="mock-templates">
+                    <div class="mock-templates-title">Templates</div>
+                    <div class="mock-template">Weekend Planner</div>
+                    <div class="mock-template">Goal Tracker</div>
+                    <div class="mock-template">Meeting Notes</div>
+                    <div class="mock-template">Daily Journal</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Stats Panel -->
+        <div class="stats-panel">
+            <div class="stats-header">
+                <h1>Development Time</h1>
+                <p>First AI-era side project</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">31</div>
+                    <div class="stat-label">Hours</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">Commits</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">6</div>
+                    <div class="stat-label">Templates</div>
+                </div>
+            </div>
+
+            <div class="chart">
+                <div class="bar-row">
+                    <div class="bar-label">Building</div>
+                    <div class="bar-container">
+                        <div class="bar bar-building">
+                            <span class="bar-value">15h (48%)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bar-row">
+                    <div class="bar-label">Debugging</div>
+                    <div class="bar-container">
+                        <div class="bar bar-debugging">
+                            <span class="bar-value">6h</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bar-row">
+                    <div class="bar-label">Design</div>
+                    <div class="bar-container">
+                        <div class="bar bar-design">
+                            <span class="bar-value">4h</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bar-row">
+                    <div class="bar-label">Docs</div>
+                    <div class="bar-container">
+                        <div class="bar bar-docs">
+                            <span class="bar-value">3h</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bar-row">
+                    <div class="bar-label">Testing</div>
+                    <div class="bar-container">
+                        <div class="bar bar-testing">
+                            <span class="bar-value">3h</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <p><strong>Hardest bug:</strong> CSS frameworks fighting each other. Tailwind's reset stripped my bullet points. 2h to debug.</p>
+            </div>
+
+            <div class="tech-stack">
+                <span class="tech-badge">Next.js 16</span>
+                <span class="tech-badge">TypeScript</span>
+                <span class="tech-badge">TipTap</span>
+                <span class="tech-badge">Supabase</span>
+                <span class="tech-badge">Tailwind</span>
+            </div>
+
+            <div class="footer">
+                <p>Built with Claude Code as my AI pair programmer</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

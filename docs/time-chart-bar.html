@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteApp Development Time - Bar Chart</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+        .container {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            max-width: 700px;
+            width: 100%;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .header h1 {
+            font-size: 32px;
+            color: #0f172a;
+            margin-bottom: 8px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        .header p {
+            color: #64748b;
+            font-size: 16px;
+        }
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin: 32px 0;
+            padding: 24px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 42px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-label {
+            font-size: 13px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+        .chart {
+            margin: 32px 0;
+        }
+        .bar-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .bar-label {
+            width: 120px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #334155;
+            text-align: right;
+            padding-right: 16px;
+        }
+        .bar-container {
+            flex: 1;
+            height: 36px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        .bar {
+            height: 100%;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 12px;
+            transition: width 1s ease-out;
+        }
+        .bar-value {
+            font-size: 13px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        .bar-value-outside {
+            position: absolute;
+            right: -45px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #334155;
+        }
+        .bar-building { background: linear-gradient(90deg, #f59e0b, #fbbf24); width: 100%; }
+        .bar-debugging { background: linear-gradient(90deg, #ef4444, #f87171); width: 40%; }
+        .bar-design { background: linear-gradient(90deg, #3b82f6, #60a5fa); width: 26.7%; }
+        .bar-docs { background: linear-gradient(90deg, #10b981, #34d399); width: 20%; }
+        .bar-testing { background: linear-gradient(90deg, #8b5cf6, #a78bfa); width: 20%; }
+
+        .insight-box {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 24px 0;
+            border-left: 4px solid #f59e0b;
+        }
+        .insight-box p {
+            color: #92400e;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .insight-box strong {
+            color: #78350f;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 32px;
+        }
+        .footer p {
+            color: #94a3b8;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .tech-badge {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>NoteApp</h1>
+            <p>My first AI-era side project</p>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat">
+                <div class="stat-value">31</div>
+                <div class="stat-label">Hours</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">12</div>
+                <div class="stat-label">Commits</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">6</div>
+                <div class="stat-label">Templates</div>
+            </div>
+        </div>
+
+        <div class="chart">
+            <div class="bar-row">
+                <div class="bar-label">Building</div>
+                <div class="bar-container">
+                    <div class="bar bar-building">
+                        <span class="bar-value">15h (48%)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bar-row">
+                <div class="bar-label">Debugging</div>
+                <div class="bar-container">
+                    <div class="bar bar-debugging">
+                        <span class="bar-value">6h (19%)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bar-row">
+                <div class="bar-label">Design</div>
+                <div class="bar-container">
+                    <div class="bar bar-design">
+                        <span class="bar-value">4h</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bar-row">
+                <div class="bar-label">Documentation</div>
+                <div class="bar-container">
+                    <div class="bar bar-docs">
+                        <span class="bar-value">3h</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bar-row">
+                <div class="bar-label">Testing</div>
+                <div class="bar-container">
+                    <div class="bar bar-testing">
+                        <span class="bar-value">3h</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="insight-box">
+            <p><strong>Key insight:</strong> The hardest bug wasn't logic—it was CSS frameworks fighting each other. Tailwind's reset was stripping my bullet points. 2 hours to debug.</p>
+        </div>
+
+        <div class="footer">
+            <p>Built with Claude Code as my AI pair programmer</p>
+            <div class="tech-stack">
+                <span class="tech-badge">Next.js 16</span>
+                <span class="tech-badge">TypeScript</span>
+                <span class="tech-badge">TipTap</span>
+                <span class="tech-badge">Supabase</span>
+                <span class="tech-badge">Tailwind</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
