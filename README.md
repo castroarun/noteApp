@@ -1,6 +1,28 @@
-# NoteApp - Clean & Simple Note-Taking
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" />
+  <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Tailwind-4.x-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Supabase-Database-3FCF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase" />
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
+</p>
 
-A fast, clean, and simple note-taking web application with rich text editing and templates. Built with Next.js 16, TypeScript, Tailwind CSS, and Supabase.
+<h1 align="center">NoteApp</h1>
+
+<h3 align="center">
+  Clean & simple note-taking. <em>Fast. Beautiful. Yours.</em>
+</h3>
+
+<p align="center">
+  A fast, clean note-taking web app with rich text editing and templates.<br />
+  Built with Next.js 16, TypeScript, Tailwind CSS, and Supabase.
+</p>
+
+<p align="center">
+  <a href="#features">Features</a> •
+  <a href="#quick-start">Quick Start</a> •
+  <a href="#tech-stack">Tech Stack</a> •
+  <a href="#usage">Usage</a>
+</p>
 
 <!-- LAUNCHPAD:START -->
 ```json
@@ -20,24 +42,61 @@ A fast, clean, and simple note-taking web application with rich text editing and
 ```
 <!-- LAUNCHPAD:END -->
 
+---
+
 ## Features
 
-- **Instant Note-Taking**: Start typing immediately upon app launch with a central editor focus
-- **Rich Text Editing**: Full-featured Tiptap editor with formatting (bold, italic, underline), headings, and lists
-- **Auto-Save**: Changes saved automatically after 1 second of inactivity
-- **Supabase Authentication**: Secure signin with email/password
-- **Templates System**: 6 pre-built templates (Weekend Planner, Goal Tracker, Lecture Notes, Meeting Notes, Daily Journal, Project Ideas)
-- **Note Organization**: Pin important notes, search across all notes
-- **Dark Mode**: Toggle between light and dark themes
-- **Keyboard Shortcuts**: Full keyboard navigation support with help modal
+- **Instant Note-Taking** — Start typing immediately upon app launch
+- **Rich Text Editing** — Full Tiptap editor with formatting, headings, and lists
+- **Auto-Save** — Changes saved automatically after 1 second of inactivity
+- **Supabase Auth** — Secure signin with email/password
+- **Templates** — 6 pre-built templates (Weekend Planner, Goal Tracker, etc.)
+- **Note Organization** — Pin important notes, search across all notes
+- **Dark Mode** — Toggle between light and dark themes
+- **Keyboard Shortcuts** — Full keyboard navigation with help modal
+
+---
+
+## Quick Start
+
+### Prerequisites
+
+- Node.js 18+ and npm
+- A Supabase account
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/castroarun/noteApp.git
+cd noteApp
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env.local
+# Edit .env.local with your Supabase credentials
+
+# Run development server
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
 
 ## Tech Stack
 
-- **Frontend**: Next.js 16 (App Router with Turbopack), React 19, TypeScript 5.x
-- **Styling**: Tailwind CSS 4.x with CSS variable theming
-- **Database**: Supabase (PostgreSQL with Row Level Security)
-- **Authentication**: Supabase Auth (email/password)
-- **Editor**: Tiptap 2.x (ProseMirror-based rich text editor)
+| Technology | Purpose |
+|------------|---------|
+| [Next.js 16](https://nextjs.org/) | React framework with App Router |
+| [TypeScript 5.x](https://www.typescriptlang.org/) | Type safety |
+| [Tailwind CSS 4.x](https://tailwindcss.com/) | Styling with CSS variables |
+| [Supabase](https://supabase.com/) | PostgreSQL + Auth + RLS |
+| [Tiptap 2.x](https://tiptap.dev/) | Rich text editor |
+
+---
 
 ## Project Structure
 
@@ -63,75 +122,27 @@ noteApp/
 ├── types.ts                 # Application TypeScript types
 └── docs/                    # Documentation
     ├── NOTE-APP-PRD.md     # Product requirements
-    ├── BUILD-INSTRUCTIONS.md # Build guide
-    └── TIME-SPENT.md       # Development time analysis
+    └── BUILD-INSTRUCTIONS.md
 ```
 
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+ and npm
-- A Supabase account
-
-### 1. Clone and Install
-
-```bash
-git clone <your-repo-url>
-cd noteApp
-npm install
-```
-
-### 2. Set Up Supabase
-
-1. Create a new project at [supabase.com](https://supabase.com)
-2. Go to SQL Editor and run the schema from `docs/DATABASE-SCHEMA.sql`
-3. Get your Supabase credentials:
-   - Project URL: Settings > API > Project URL
-   - Anon Key: Settings > API > Project API keys > anon public
-
-### 3. Configure Environment Variables
-
-Create `.env.local` with your credentials:
-
-```env
-# Supabase
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-
-# Application
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-```
-
-### 4. Run Development Server
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+---
 
 ## Usage
 
-### Creating Notes
+### Keyboard Shortcuts
 
-1. Sign in with email/password
-2. Click "+ New Note" or start typing in the editor
-3. Notes auto-save after 1 second of inactivity
+| Action | Shortcut |
+|--------|----------|
+| Bold | Ctrl+B |
+| Italic | Ctrl+I |
+| Underline | Ctrl+U |
+| Heading | Alt+H |
+| Bullet List | Ctrl+Shift+8 |
+| Numbered List | Ctrl+Shift+7 |
 
-### Formatting Text
+### Templates
 
-Use the toolbar buttons or keyboard shortcuts:
-- **Bold**: Ctrl+B
-- **Italic**: Ctrl+I
-- **Underline**: Ctrl+U
-- **Heading**: Alt+H
-- **Bullet List**: Ctrl+Shift+8
-- **Numbered List**: Ctrl+Shift+7
-
-### Using Templates
-
-Click any template icon in the right panel to create a new note with that template:
+Click any template in the right panel:
 - 📅 Weekend Planner
 - 🎯 Goal Tracker
 - 📚 Lecture Notes
@@ -139,44 +150,28 @@ Click any template icon in the right panel to create a new note with that templa
 - 📝 Daily Journal
 - 💡 Project Ideas
 
-## Development
+---
 
-### Build for Production
+## Roadmap
 
-```bash
-npm run build
-npm run start
-```
-
-### Type Checking
-
-```bash
-npx tsc --noEmit
-```
-
-## Row Level Security (RLS)
-
-All database tables have Row Level Security enabled. Users can only:
-- View their own notes
-- Create/update/delete their own notes
-
-## Future Enhancements (Not Implemented)
-
-- Jira Integration
-- Gmail Integration
-- Markdown File Sync
-- Tags System
-- Note Sharing
-- Real-time Collaboration
-
-## Acknowledgments
-
-- Built with [Next.js](https://nextjs.org/)
-- UI with [Tailwind CSS](https://tailwindcss.com/)
-- Database by [Supabase](https://supabase.com/)
-- Editor by [Tiptap](https://tiptap.dev/)
+- [x] Rich text editing with Tiptap
+- [x] Auto-save functionality
+- [x] Templates system
+- [x] Dark mode
+- [x] Pin notes
+- [ ] Folder organization
+- [ ] Tags system
+- [ ] Note sharing
+- [ ] Real-time collaboration
 
 ---
 
-**Last Updated**: 2025-11-29
-**Version**: 1.0.0
+## License
+
+MIT
+
+---
+
+<p align="center">
+  <sub>Built by <a href="https://github.com/castroarun">Arun Castro</a></sub>
+</p>
