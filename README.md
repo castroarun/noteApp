@@ -2,6 +2,24 @@
 
 A fast, clean, and simple note-taking web application with rich text editing and templates. Built with Next.js 16, TypeScript, Tailwind CSS, and Supabase.
 
+<!-- LAUNCHPAD:START -->
+```json
+{
+  "stage": "live",
+  "progress": 90,
+  "complexity": "F",
+  "lastUpdated": "2026-01-17",
+  "targetDate": null,
+  "nextAction": "Add folder organization feature",
+  "blocker": null,
+  "demoUrl": null,
+  "techStack": ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "Tiptap"],
+  "shipped": true,
+  "linkedinPosted": false
+}
+```
+<!-- LAUNCHPAD:END -->
+
 ## Features
 
 - **Instant Note-Taking**: Start typing immediately upon app launch with a central editor focus
